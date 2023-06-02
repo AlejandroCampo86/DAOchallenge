@@ -1,0 +1,11 @@
+{
+  "id": "0",
+  "title": "Example Proposal",
+  "description": "This is an example proposal",
+  "deadline": "1685681956",
+  "minimumVotes": "10",
+  "votesForA": "0",
+  "votesForB": "0",
+  "closed": false,
+  "finished": false
+}

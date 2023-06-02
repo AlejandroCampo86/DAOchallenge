@@ -1,0 +1,36 @@
+CHALLENGE FRONTEND STEPS
+
+4. Create API Service:
+
+Inside the src/services folder, create a new file called api.js.
+Implement functions for making API requests to interact with the backend.
+For example, you can define functions like getProposals(), createProposal(title, description, deadline, minimumVotes, optionA, optionB), and vote(proposalId, option). These functions should use the axios library to make HTTP requests to the backend REST API.
+Create Components:
+
+Inside the src/components folder, create the necessary components for your DAO frontend application.
+For example, you can create a ProposalList component to display the list of proposals, a ProposalDetails component to show the details of a specific proposal, and a VoteForm component to allow users to vote on a proposal.
+Implement Views:
+
+Update the src/App.js file to define the routing and rendering logic for your application.
+Create views that correspond to the different pages or sections of your DAO application.
+For example, you can create a Home view to display the list of proposals, a ProposalDetails view to show the details of a specific proposal, and a Vote view to allow users to vote on a proposal.
+Styling and UI:
+
+Use CSS or a CSS-in-JS library like styled-components to style your components and create a visually appealing user interface.
+Design and layout the UI based on your requirements, including listing the proposals, showing proposal details, and providing the voting functionality.
+Test and Run the Frontend:
+
+Test your components and views to ensure they function as expected.
+Start the React development server by running the following command in the project directory:
+sql
+Copy code
+npm start
+Open your browser and navigate to http://localhost:3000 to see your React application in action.
+Connect Frontend to Backend:
+
+Update your components and views to make use of the API service functions you defined earlier.
+Call the appropriate API functions to fetch proposal data, create new proposals, and handle voting.
+Deploy the Frontend:
+
+Once you're satisfied with your frontend application, you can deploy it to a hosting platform or web server of your choice.
+There are several options available, such as Netlify, Vercel, GitHub Pages, or hosting
