@@ -1,84 +1,17 @@
-CONTRACT ADDRESS: 0xC3945540144e4e5d5dfE58774a67C0D4EF924A0B
+CONTRACT ADDRESS: 0xf0AeAF1Ff2337c8641c1817EB2B74b62E543DE7a
 POLYGON WALLET: 0xd5293040Cd510076968c8E6e8fB6e380aA0Db5fC
 
 
 To develop the smart contracts for your DAO, you can follow these steps
 
-Set up a Solidity development environment Install Solidity compiler and development tools. You can use tools like Remix, Truffle, or Hardhat to develop and deploy your smart contracts. Follow the installation instructions for your chosen development environment.
+Set up a Solidity development environment Install Solidity compiler and development tools. You can use tools like Remix, Truffle, or Hardhat to develop and deploy your smart contracts. Follow the installation instructions for your chosen development environment. ***
 
-Create a new Solidity file Create a new .sol file, such as DAO.sol, to define your smart contracts. This file will contain the contracts that govern the DAO's operations.
+Create a new Solidity file Create a new .sol file, such as DAO.sol, to define your smart contracts. This file will contain the contracts that govern the DAO's operations. (ADD THE MINT OPERATION AND CREATE THE TOKEN
 
 Define the DAO contract In your DAO.sol file, define the main DAO contract that will handle proposals and voting. Here's an example contract to get you started:
 
 ///////////
 
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-contract DAO {
-    struct Proposal {
-        uint256 id;
-        string title;
-        string description;
-        uint256 deadline;
-        uint256 minimumVotes;
-        uint256 votesForA;
-        uint256 votesForB;
-        bool closed;
-        bool finished;
-    }
-
-    Proposal[] public proposals;
-    mapping(uint256 => mapping(address => bool)) public hasVoted;
-
-    event ProposalCreated(uint256 id, string title);
-    event VoteSubmitted(uint256 proposalId, address voter, uint256 voteOption);
-
-    function createProposal(
-        string memory title,
-        string memory description,
-        uint256 deadline,
-        uint256 minimumVotes
-    ) public {
-        uint256 proposalId = proposals.length;
-        Proposal memory newProposal = Proposal(
-            proposalId,
-            title,
-            description,
-            deadline,
-            minimumVotes,
-            0,
-            0,
-            false,
-            false
-        );
-        proposals.push(newProposal);
-
-        emit ProposalCreated(proposalId, title);
-    }
-
-    function vote(uint256 proposalId, uint256 voteOption) public {
-        Proposal storage proposal = proposals[proposalId];
-
-        require(!proposal.closed, "Proposal is closed");
-        require(!proposal.finished, "Proposal is finished");
-        require(!hasVoted[proposalId][msg.sender], "Already voted");
-
-        if (voteOption == 0) {
-            proposal.votesForA++;
-        } else if (voteOption == 1) {
-            proposal.votesForB++;
-        } else {
-            revert("Invalid vote option");
-        }
-
-        hasVoted[proposalId][msg.sender] = true;
-
-        emit VoteSubmitted(proposalId, msg.sender, voteOption);
-    }
-}
-
-///////////
 
 In this example, the DAO contract contains a Proposal struct to store proposal details and tracks votes for options A and B. The createProposal function allows the admin to create a new proposal, and the vote function allows token holders to submit their votes.
 
@@ -86,16 +19,6 @@ Compile and deploy the smart contract: Use your Solidity development environment
 
 Create a command-line script: Develop a command-line script that interacts with the deployed smart contract. This script should allow the admin to create new proposals on-chain with the necessary fields. You can use a library like ethers.js or web3.js to interact with the smart contract.
 
-Here's a basic example using ethers.js:
 
-//////////////
 
-const { ethers } = require('ethers');
-const DAOABI = require('./path/to/DAO.json'); // Replace with the actual path to your compiled contract ABI
-
-async function createProposal() {
-  const provider = new ethers.providers.JsonRpcProvider('http://localhost:8545'); // Replace with your blockchain provider URL
-  const signer = provider
-
-//////////////////////////
 

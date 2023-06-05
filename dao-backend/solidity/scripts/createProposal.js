@@ -2,8 +2,8 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-const title = "Example Proposal";
-const description = "This is an example proposal";
+const title = "a fourth Proposal";
+const description = "This is a third proposal";
 const deadline = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
 const minimumVotes = 10;
 const optionA = "Option A";
@@ -15,14 +15,11 @@ async function main() {
 
     // Deploy the DAO contract
     const DAO = await hre.ethers.getContractFactory("DAO");
-    const dao = await DAO.deploy();
-    await dao.deployed();
 
-    console.log("DAO contract deployed to:", dao.address);
     console.log("Deployer address:", deployer.address);
 
     // Connect to the deployed contract
-    const daoContract = await DAO.attach(dao.address);
+    const daoContract = await DAO.attach('0xf0AeAF1Ff2337c8641c1817EB2B74b62E543DE7a');
 
     // Create the proposal
     await daoContract.createProposal(
@@ -34,7 +31,7 @@ async function main() {
     console.log("New proposal created.");
 
     // Wait for 2 seconds for the proposals array to update
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 8000));
 
     // Save the proposal details to a JSON file
     const proposalCount = await daoContract.proposalsCount();
