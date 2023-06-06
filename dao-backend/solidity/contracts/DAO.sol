@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 contract DAO {
     struct Proposal {
@@ -10,7 +10,7 @@ contract DAO {
         uint256 minimumVotes;
         uint256 votesForA;
         uint256 votesForB;
-        bool closed;
+        bool isClosed;
         bool finished;
     }
 
@@ -19,6 +19,8 @@ contract DAO {
 
     event ProposalCreated(uint256 id, string title);
     event VoteSubmitted(uint256 proposalId, address voter, uint256 voteOption);
+    event ProposalClosed(uint256 proposalId);
+    event ProposalFinished(uint256 proposalId, string winningOption);
 
     function createProposal(
         string memory title,
@@ -46,7 +48,16 @@ contract DAO {
     function vote(uint256 proposalId, uint256 voteOption) public {
         Proposal storage proposal = proposals[proposalId];
 
-        require(!proposal.closed, "Proposal is closed");
+        // Check if the deadline has passed and close the proposal if so
+        if (block.timestamp >= proposal.deadline) {
+            proposal.isClosed = true;
+            emit ProposalClosed(proposalId);
+
+            // Finish the proposal and determine the winning option
+            finishProposal(proposalId);
+        }
+
+        require(!proposal.isClosed, "Proposal is closed");
         require(!proposal.finished, "Proposal is finished");
         require(!hasVoted[proposalId][msg.sender], "Already voted");
 
@@ -61,6 +72,26 @@ contract DAO {
         hasVoted[proposalId][msg.sender] = true;
 
         emit VoteSubmitted(proposalId, msg.sender, voteOption);
+    }
+
+    function finishProposal(uint256 proposalId) internal {
+        Proposal storage proposal = proposals[proposalId];
+
+        require(proposal.isClosed, "Proposal is not closed");
+        require(!proposal.finished, "Proposal is already finished");
+
+        proposal.finished = true;
+
+        string memory winningOption;
+        if (proposal.votesForA > proposal.votesForB) {
+            winningOption = "Option A";
+        } else if (proposal.votesForB > proposal.votesForA) {
+            winningOption = "Option B";
+        } else {
+            winningOption = "Tie";
+        }
+
+        emit ProposalFinished(proposalId, winningOption);
     }
 
     function proposalsCount() public view returns (uint256) {

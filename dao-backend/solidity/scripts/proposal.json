@@ -1,11 +1,10 @@
 {
-  "id": "3",
-  "title": "a fourth Proposal",
-  "description": "This is a third proposal",
-  "deadline": "1685941385",
+  "id": "8",
+  "title": "nineth Proposal",
+  "description": "This is the nineth proposal",
+  "deadline": "1686681909",
   "minimumVotes": "10",
   "votesForA": "0",
   "votesForB": "0",
-  "closed": false,
   "finished": false
 }
