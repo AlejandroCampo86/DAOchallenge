@@ -97,4 +97,15 @@ contract DAO {
     function proposalsCount() public view returns (uint256) {
         return proposals.length;
     }
+
+    function proposalsStatus() public {
+        for (uint256 i = 0; i < proposals.length; i++) {
+            Proposal storage proposal = proposals[i];
+            if (!proposal.isClosed && block.timestamp >= proposal.deadline) {
+                proposal.isClosed = true;
+                emit ProposalClosed(proposal.id);
+                finishProposal(proposal.id);
+            }
+        }
+    }
 }

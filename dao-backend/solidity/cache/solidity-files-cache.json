@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "E:\\Web\\Challenges\\DAO\\dao-backend\\solidity\\contracts\\DAO.sol": {
-      "lastModificationDate": 1686075263062,
-      "contentHash": "3aec9797e9faafdd59b3bc7da28d469b",
+      "lastModificationDate": 1686154552788,
+      "contentHash": "721338ce62c9e800176dc2362f110aaf",
       "sourceName": "contracts/DAO.sol",
       "solcConfig": {
         "version": "0.8.9",

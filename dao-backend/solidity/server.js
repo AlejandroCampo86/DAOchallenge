@@ -15,15 +15,29 @@ app.get('/proposals', async (req, res) => {
     try {
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0x0c38Cd1f534F2987304B3D613353851c1F43879D');
+        const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
 
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();
 
-        // Fetch each proposal details
+        // Fetch each proposal details and calculate votes
         const proposals = [];
         for (let i = 0; i < proposalCount; i++) {
             const proposal = await daoContract.proposals(i);
+
+            let winningOption = null;
+            if (proposal.isClosed) {
+                const votesForA = proposal.votesForA.toString();
+                const votesForB = proposal.votesForB.toString();
+                if (votesForA > votesForB) {
+                    winningOption = 'A';
+                } else if (votesForA < votesForB) {
+                    winningOption = 'B';
+                } else {
+                    winningOption = 'Tie';
+                }
+            }
+
             proposals.push({
                 id: proposal.id.toString(),
                 title: proposal.title,
@@ -32,18 +46,21 @@ app.get('/proposals', async (req, res) => {
                 minimumVotes: proposal.minimumVotes.toString(),
                 votesForA: proposal.votesForA.toString(),
                 votesForB: proposal.votesForB.toString(),
-                closed: proposal.closed,
+                closed: proposal.isClosed,
                 finished: proposal.finished,
+                winningOption: winningOption,
             });
         }
 
         res.json({ proposals });
-        console.log({ proposals })
+        console.log({ proposals });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to fetch proposals' });
     }
 });
+
+
 
 // Example route to create a new proposal
 app.post('/proposals', async (req, res) => {
@@ -52,7 +69,7 @@ app.post('/proposals', async (req, res) => {
 
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0x0c38Cd1f534F2987304B3D613353851c1F43879D');
+        const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
 
         // Create the proposal
         await daoContract.createProposal(
@@ -79,7 +96,7 @@ app.post('/proposals/:id/vote/:vote', async (req, res) => {
 
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0x0c38Cd1f534F2987304B3D613353851c1F43879D');
+        const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
 
         // Submit the vote for the specified proposal
         await daoContract.vote(proposalId, voteOption);
