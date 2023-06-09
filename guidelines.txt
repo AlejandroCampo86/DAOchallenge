@@ -10,8 +10,10 @@ through a REST API ***
 
 - A frontend application 
 	- Conexion a Metamask ***
+	- Formatear Deadline e impedir voto si la propuesta finaliza. ***
 	- Ajustar estilos
-	- error handlers 
-	- Lists all proposals and their status (pending, closed, finished, option A won, option B won, etc)
+	- Agregar spinners
+	- error handlers (vote ok)
+	- Lists all proposals and their status (pending, closed, finished, option A won, option B won, etc) ***
 
 - Allows to vote option A or option B ***

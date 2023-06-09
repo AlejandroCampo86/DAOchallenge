@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+import "./DAOtoken.sol";
+
 contract DAO {
+    DAOtoken public daoToken;
+
     struct Proposal {
         uint256 id;
         string title;
@@ -12,6 +16,10 @@ contract DAO {
         uint256 votesForB;
         bool isClosed;
         bool finished;
+    }
+
+    constructor(address tokenAddress) {
+        daoToken = DAOtoken(tokenAddress);
     }
 
     Proposal[] public proposals;

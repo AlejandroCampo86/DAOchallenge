@@ -20,6 +20,9 @@ app.get('/proposals', async (req, res) => {
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();
 
+        //check status on proposals
+        await daoContract.proposalsStatus()
+
         // Fetch each proposal details and calculate votes
         const proposals = [];
         for (let i = 0; i < proposalCount; i++) {
