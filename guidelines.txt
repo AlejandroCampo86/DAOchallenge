@@ -1,3 +1,8 @@
+
+DAO contract deployed to: 0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB
+Deployer address: 0xd5293040Cd510076968c8E6e8fB6e380aA0Db5fC
+Token contract address: 0x2ff97d56EC289DaC06e508cb4232A9b0e2454b40
+
 - A single, or a set of smart-contracts to support the DAO. ***
 
 - A command-line script that allows the admin create a new proposal on-chain with the following fields: Title, description, proposal
@@ -8,7 +13,7 @@ deadline, minimum votes, option A and option B, and any other you deemed necessa
 date, and serves all necessary information about such proposals
 through a REST API ***
 
-- A frontend application 
+- frontend application 
 	- Conexion a Metamask ***
 	- Formatear Deadline e impedir voto si la propuesta finaliza. ***
 	- Ajustar estilos
@@ -16,4 +21,12 @@ through a REST API ***
 	- error handlers (vote ok)
 	- Lists all proposals and their status (pending, closed, finished, option A won, option B won, etc) ***
 
+- Contract 
+	- Mint its native token ***
+	- create a function to distribute some DAO tokens to users upon registration
+
+
 - Allows to vote option A or option B ***
+
+BUGS:
+	- proposal figura pending cuando ya termino ***

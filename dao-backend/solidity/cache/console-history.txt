@@ -1,0 +1,10 @@
+console.log(`Token balance of ${addressToVerify}: ${balance.toString()}`);
+const balance = await tokenContract.balanceOf(addressToVerify);
+const addressToVerify = "0xd5293040Cd510076968c8E6e8fB6e380aA0Db5fC";
+const addressToCheck = "0xd5293040Cd510076968c8E6e8fB6e380aA0Db5fC";
+heck}: ${balance.toString()}`);
+constconsole.log(`Token balance of ${addressToC
+const addressToCheck = "<address_to_check>";
+const tokenContract = await Token.attach("0xAAf6dc76959fF03BD81487495FF1A7D293Db1BC3")
+console.log(Token)
+const Token = await ethers.getContractFactory("DAOtoken")

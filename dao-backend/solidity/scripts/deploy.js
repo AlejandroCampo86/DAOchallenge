@@ -6,19 +6,25 @@ async function main() {
     // Compile the contracts
     await hre.run("compile");
 
-    // Deploy the token contract
-    const DAOtoken = await hre.ethers.getContractFactory("DAOtoken");
-    const daoToken = await DAOtoken.deploy("DAO_Token", "DAOTKN", 18, 1000000);
-    await daoToken.deployed();
-
-    // Deploy the DAO contract and pass the token contract address
+    // Deploy the DAO contract without passing the token address
     const DAO = await hre.ethers.getContractFactory("DAO");
-    const dao = await DAO.deploy(daoToken.address);
+    const dao = await DAO.deploy();
     await dao.deployed();
 
     console.log("DAO contract deployed to:", dao.address);
-    console.log("Token contract address:", daoToken.address);
     console.log("Deployer address:", deployer.address);
+
+    // Deploy the DAOtoken contract
+    const DAOtoken = await hre.ethers.getContractFactory("DAOtoken");
+    const daoToken = await DAOtoken.deploy("DAO_Token", "DAOTKN", 18, 1000000, dao.address);
+    await daoToken.deployed();
+
+    console.log("Token contract address:", daoToken.address);
+
+    // Set the DAOtoken address in the DAO contract
+    await dao.setDAOtoken(daoToken.address);
+
+    console.log("DAO token address set in the DAO contract");
 }
 
 main()

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "E:\\Web\\Challenges\\DAO\\dao-backend\\solidity\\contracts\\DAO.sol": {
-      "lastModificationDate": 1686270028420,
-      "contentHash": "96e33f5393405a37314b703a5d95f9ef",
+      "lastModificationDate": 1686353171569,
+      "contentHash": "02c078baaad7c00b99f42525fe2665df",
       "sourceName": "contracts/DAO.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -39,8 +39,8 @@
       ]
     },
     "E:\\Web\\Challenges\\DAO\\dao-backend\\solidity\\contracts\\DAOtoken.sol": {
-      "lastModificationDate": 1686263800722,
-      "contentHash": "4e1cea8ca697d2e9f087ecb02dc30e41",
+      "lastModificationDate": 1686351540608,
+      "contentHash": "941a270b40b2d6ba5a134e9bd66cd7a8",
       "sourceName": "contracts/DAOtoken.sol",
       "solcConfig": {
         "version": "0.8.9",

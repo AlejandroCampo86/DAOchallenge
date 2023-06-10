@@ -10,12 +10,54 @@ app.use((req, res, next) => {
     next();
 });
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Example route to join the DAO
+// Example route to join the DAO
+// Example route to join the DAO
+app.post('/join-dao', async (req, res) => {
+    try {
+        const { address } = req.body;
+
+        // Connect to the deployed DAO contract
+        const DAO = await hre.ethers.getContractFactory("DAO");
+        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
+
+        // Connect to the deployed DAOtoken contract
+        const DAOtoken = await hre.ethers.getContractFactory("DAOtoken");
+        const tokenContract = await DAOtoken.attach('0x2ff97d56EC289DaC06e508cb4232A9b0e2454b40');
+
+        // Get the current token balance of the new member
+        const tokenBalanceBefore = await tokenContract.balanceOf(address);
+
+        // Call the joinDAO function in the DAO contract
+        await daoContract.joinDAO();
+
+        // Get the updated token balance of the new member
+        const tokenBalanceAfter = await tokenContract.balanceOf(address);
+
+        // Calculate the tokens received by the new member
+        const tokensReceived = tokenBalanceAfter.sub(tokenBalanceBefore);
+
+        res.json({ message: 'Joined the DAO successfully', tokensReceived: tokensReceived.toString() });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to join the DAO' });
+    }
+});
+
+
+
+
+
+
 // Example route to fetch all proposals
 app.get('/proposals', async (req, res) => {
     try {
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
+        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
 
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();
@@ -72,7 +114,7 @@ app.post('/proposals', async (req, res) => {
 
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
+        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
 
         // Create the proposal
         await daoContract.createProposal(
@@ -99,7 +141,7 @@ app.post('/proposals/:id/vote/:vote', async (req, res) => {
 
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
+        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
 
         // Submit the vote for the specified proposal
         await daoContract.vote(proposalId, voteOption);

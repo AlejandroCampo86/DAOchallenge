@@ -2,9 +2,9 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-const title = "sixth Proposal";
-const description = "This is the sixth proposal";
-const deadline = Math.floor(Date.now() / 1000) + 360
+const title = "first Proposal";
+const description = "This is the first proposal";
+const deadline = Math.floor(Date.now() / 1000) + 3600 * 7
 const minimumVotes = 10;
 
 
@@ -17,7 +17,7 @@ async function main() {
     console.log("Deployer address:", deployer.address);
 
     // Connect to the deployed contract
-    const daoContract = await DAO.attach('0xeFf28f5Dd79b919B6924daFe2125f4c6E71Acf22');
+    const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
 
     // Create the proposal
     await daoContract.createProposal(

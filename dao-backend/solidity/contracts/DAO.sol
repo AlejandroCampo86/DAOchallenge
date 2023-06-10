@@ -18,17 +18,36 @@ contract DAO {
         bool finished;
     }
 
-    constructor(address tokenAddress) {
+    function setDAOtoken(address tokenAddress) public {
+        require(address(daoToken) == address(0), "DAOtoken already set");
         daoToken = DAOtoken(tokenAddress);
     }
 
     Proposal[] public proposals;
+    mapping(address => uint256) public memberBalances;
     mapping(uint256 => mapping(address => bool)) public hasVoted;
 
     event ProposalCreated(uint256 id, string title);
     event VoteSubmitted(uint256 proposalId, address voter, uint256 voteOption);
     event ProposalClosed(uint256 proposalId);
     event ProposalFinished(uint256 proposalId, string winningOption);
+
+    modifier onlyMember() {
+        require(memberBalances[msg.sender] > 0, "Only members can vote");
+        _;
+    }
+
+    function joinDAO() public {
+        require(memberBalances[msg.sender] == 0, "Already a member");
+
+        uint256 initialTokens = 100; // tokens to be sent to joiners of DAO
+        require(
+            daoToken.transferFromDAO(msg.sender, initialTokens),
+            "Token transfer failed"
+        );
+
+        memberBalances[msg.sender] = initialTokens;
+    }
 
     function createProposal(
         string memory title,
@@ -53,15 +72,13 @@ contract DAO {
         emit ProposalCreated(proposalId, title);
     }
 
-    function vote(uint256 proposalId, uint256 voteOption) public {
+    function vote(uint256 proposalId, uint256 voteOption) public onlyMember {
         Proposal storage proposal = proposals[proposalId];
 
-        // Check if the deadline has passed and close the proposal if so
         if (block.timestamp >= proposal.deadline) {
             proposal.isClosed = true;
             emit ProposalClosed(proposalId);
 
-            // Finish the proposal and determine the winning option
             finishProposal(proposalId);
         }
 
