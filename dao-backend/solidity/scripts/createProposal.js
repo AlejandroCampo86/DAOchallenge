@@ -2,8 +2,8 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-const title = "first Proposal";
-const description = "This is the first proposal";
+const title = "second Proposal";
+const description = "This is the second proposal";
 const deadline = Math.floor(Date.now() / 1000) + 3600 * 7
 const minimumVotes = 10;
 

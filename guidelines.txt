@@ -7,7 +7,7 @@ Token contract address: 0x2ff97d56EC289DaC06e508cb4232A9b0e2454b40
 
 - A command-line script that allows the admin create a new proposal on-chain with the following fields: Title, description, proposal
 deadline, minimum votes, option A and option B, and any other you deemed necessary.
-	- Ajustar los parametros que no se estan agregando
+	
 
 - A backend module that when spun up, syncs up with all proposals to
 date, and serves all necessary information about such proposals
@@ -25,10 +25,13 @@ through a REST API ***
 
 - Contract 
 	- Mint its native token ***
-	- create a function to distribute some DAO tokens to users upon registration
+	- create a function to distribute some DAO tokens to users upon registration ***
+	- Handle minimum votes and update status if not met
 
 
 - Allows to vote option A or option B ***
 
 BUGS:
 	- proposal figura pending cuando ya termino ***
+	- Connect to Metamask not working
+

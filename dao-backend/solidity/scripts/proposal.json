@@ -1,8 +1,8 @@
 {
-  "id": "3",
-  "title": "fourth Proposal",
-  "description": "This is the fourth proposal",
-  "deadline": "1686373968",
+  "id": "1",
+  "title": "second Proposal",
+  "description": "This is the second proposal",
+  "deadline": "1686484377",
   "minimumVotes": "10",
   "votesForA": "0",
   "votesForB": "0",
