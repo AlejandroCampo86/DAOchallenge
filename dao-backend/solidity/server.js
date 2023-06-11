@@ -18,34 +18,42 @@ app.use(express.json());
 // Example route to join the DAO
 app.post('/join-dao', async (req, res) => {
     try {
-        const { address } = req.body;
+        // Get the address and privateKey from the request body
+        const { address, privateKey } = req.body;
 
-        // Connect to the deployed DAO contract
-        const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
+        // Create a wallet instance using the privateKey
+        const wallet = new hre.ethers.Wallet(privateKey, provider);
 
-        // Connect to the deployed DAOtoken contract
-        const DAOtoken = await hre.ethers.getContractFactory("DAOtoken");
-        const tokenContract = await DAOtoken.attach('0x2ff97d56EC289DaC06e508cb4232A9b0e2454b40');
+        // Connect the DAO and token contracts with the wallet's signer
+        const daoContractWithSigner = daoContract.connect(wallet);
+        const tokenContractWithSigner = tokenContract.connect(wallet);
 
         // Get the current token balance of the new member
-        const tokenBalanceBefore = await tokenContract.balanceOf(address);
+        const tokenBalanceBefore = await tokenContractWithSigner.balanceOf(address);
 
-        // Call the joinDAO function in the DAO contract
-        await daoContract.joinDAO();
+        // Call the joinDAO function in the DAO contract with the client's address
+        await daoContractWithSigner.joinDAO({
+            value: 0,
+            gasLimit: 800000,
+            gasPrice: hre.ethers.utils.parseUnits("10", "gwei"),
+            nonce: await provider.getTransactionCount(address),
+        });
 
         // Get the updated token balance of the new member
-        const tokenBalanceAfter = await tokenContract.balanceOf(address);
+        const tokenBalanceAfter = await tokenContractWithSigner.balanceOf(address);
 
         // Calculate the tokens received by the new member
         const tokensReceived = tokenBalanceAfter.sub(tokenBalanceBefore);
 
         res.json({ message: 'Joined the DAO successfully', tokensReceived: tokensReceived.toString() });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to join the DAO' });
     }
 });
+
+
 
 
 

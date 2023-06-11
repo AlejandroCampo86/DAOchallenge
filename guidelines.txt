@@ -15,7 +15,9 @@ through a REST API ***
 
 - frontend application 
 	- Conexion a Metamask ***
+	- Join the DAO and receive tokens
 	- Formatear Deadline e impedir voto si la propuesta finaliza. ***
+	- implementar la alocacion de tokens al registrarse. 
 	- Ajustar estilos
 	- Agregar spinners
 	- error handlers (vote ok)

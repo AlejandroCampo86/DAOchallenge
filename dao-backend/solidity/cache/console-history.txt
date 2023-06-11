@@ -1,3 +1,7 @@
+console.log("Current address:", deployer.address);
+const [deployer] = await ethers.getSigners();
+console.log("Current address:", deployer.address);
+const [deployer] = await ethers.getSigners();
 console.log(`Token balance of ${addressToVerify}: ${balance.toString()}`);
 const balance = await tokenContract.balanceOf(addressToVerify);
 const addressToVerify = "0xd5293040Cd510076968c8E6e8fB6e380aA0Db5fC";
