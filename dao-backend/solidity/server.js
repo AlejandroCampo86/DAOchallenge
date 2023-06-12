@@ -70,24 +70,29 @@ app.get('/proposals', async (req, res) => {
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();
 
-        //check status on proposals
-        await daoContract.proposalsStatus()
-
         // Fetch each proposal details and calculate votes
         const proposals = [];
         for (let i = 0; i < proposalCount; i++) {
             const proposal = await daoContract.proposals(i);
 
             let winningOption = null;
+            let quorum = false;
+
             if (proposal.isClosed) {
-                const votesForA = proposal.votesForA.toString();
-                const votesForB = proposal.votesForB.toString();
-                if (votesForA > votesForB) {
-                    winningOption = 'A';
-                } else if (votesForA < votesForB) {
-                    winningOption = 'B';
-                } else {
-                    winningOption = 'Tie';
+                const votesForA = Number(proposal.votesForA.toString());
+                const votesForB = Number(proposal.votesForB.toString());
+                const minimumVotes = Number(proposal.minimumVotes.toString());
+
+                if (votesForA + votesForB >= minimumVotes) {
+                    if (votesForA > votesForB) {
+                        winningOption = 'A';
+                    } else if (votesForA < votesForB) {
+                        winningOption = 'B';
+                    } else {
+                        winningOption = 'Tie';
+                    }
+
+                    quorum = true;
                 }
             }
 
@@ -102,6 +107,7 @@ app.get('/proposals', async (req, res) => {
                 closed: proposal.isClosed,
                 finished: proposal.finished,
                 winningOption: winningOption,
+                quorum: quorum,
             });
         }
 
@@ -112,6 +118,7 @@ app.get('/proposals', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch proposals' });
     }
 });
+
 
 
 
