@@ -1,5 +1,5 @@
 
-DAO contract deployed to: 0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB
+DAO contract deployed to: 0xd6b326A435ccCAb645bC88dB0e43D6671Eb7879e
 Token contract address: 0xe82fB3f3263D2237FB7aE364c1932b38a1EC4301
 Deployer address: 0xd5293040Cd510076968c8E6e8fB6e380aA0Db5fC
 

@@ -65,7 +65,7 @@ app.get('/proposals', async (req, res) => {
     try {
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
+        const daoContract = await DAO.attach('0xd6b326A435ccCAb645bC88dB0e43D6671Eb7879e');
 
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();
@@ -134,7 +134,7 @@ app.post('/proposals', async (req, res) => {
 
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
+        const daoContract = await DAO.attach('0xd6b326A435ccCAb645bC88dB0e43D6671Eb7879e');
 
         // Create the proposal
         await daoContract.createProposal(
@@ -161,7 +161,7 @@ app.post('/proposals/:id/vote/:vote', async (req, res) => {
 
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0xEA6fA9d3c061b0957fDeeE5ec1132Cc730d7b2EB');
+        const daoContract = await DAO.attach('0xd6b326A435ccCAb645bC88dB0e43D6671Eb7879e');
 
         // Submit the vote for the specified proposal
         await daoContract.vote(proposalId, voteOption);
