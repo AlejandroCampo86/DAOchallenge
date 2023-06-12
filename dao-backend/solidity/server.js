@@ -54,12 +54,6 @@ app.post('/join-dao', async (req, res) => {
 });
 
 
-
-
-
-
-
-
 // Example route to fetch all proposals
 app.get('/proposals', async (req, res) => {
     try {
@@ -134,9 +128,6 @@ app.get('/proposals', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch proposals' });
     }
 });
-
-
-
 
 // Example route to create a new proposal
 app.post('/proposals', async (req, res) => {
