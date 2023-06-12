@@ -70,6 +70,9 @@ app.get('/proposals', async (req, res) => {
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();
 
+        // Check Proposal status
+        await daoContract.proposalsStatus();
+
         // Fetch each proposal details and calculate votes
         const proposals = [];
         for (let i = 0; i < proposalCount; i++) {
@@ -83,7 +86,10 @@ app.get('/proposals', async (req, res) => {
                 const votesForB = Number(proposal.votesForB.toString());
                 const minimumVotes = Number(proposal.minimumVotes.toString());
 
+
+
                 if (votesForA + votesForB >= minimumVotes) {
+                    quorum = true;
                     if (votesForA > votesForB) {
                         winningOption = 'A';
                     } else if (votesForA < votesForB) {
@@ -91,9 +97,14 @@ app.get('/proposals', async (req, res) => {
                     } else {
                         winningOption = 'Tie';
                     }
-                    quorum = true;
+                } else {
+                    quorum = false
                 }
+                console.log('votesForA ', votesForA)
+                console.log('votesForB ', votesForB)
+                console.log('minimumVotes ', minimumVotes)
             }
+
 
             const isClosed = () => {
                 const deadlineInMillis = Number(proposal.deadline.toString()) * 1000;

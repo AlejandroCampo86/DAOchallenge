@@ -20,13 +20,13 @@ through a REST API ***
 	- Formatear Deadline e impedir voto si la propuesta finaliza. ***
 	- implementar la alocacion de tokens al registrarse ***
 	- Ajustar estilos minimos ***
-	- Agregar spinners
+	- Agregar spinners ***
 	- error handlers (vote ok) ***
 	- Lists all proposals and their status (pending, closed, finished, option A won, option B won, etc) ***
 	- Switch from chain ***
 	- Handle minimum votes and update status if not met 
 	- pay for voting
-	- Desabilitar boton de JOIN DAO
+	- Desabilitar boton de JOIN DAO ***
 
 - Contract 
 	- Mint its native token ***
@@ -34,6 +34,7 @@ through a REST API ***
 	- Handle minimum votes and update status if not met 
 	- pay for voting
 	- validate tokens sent when joined 
+	
 	
 
 
@@ -45,6 +46,8 @@ BUGS:
 	- You have already voted for this proposal. Choose a different one.
 	- deadline passed figura pending ***
 	- JOIN DAO Fail with error 'Already a member'. Alertar a la UI.
-	- Go Back to Proposal list doesnt work
+	- Go Back to Proposal list doesnt work in proposal Detail.
+	- Status: Closed when votes reached minimum. Should say: A won.
+
 
 
