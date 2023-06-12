@@ -91,9 +91,14 @@ app.get('/proposals', async (req, res) => {
                     } else {
                         winningOption = 'Tie';
                     }
-
                     quorum = true;
                 }
+            }
+
+            const isClosed = () => {
+                const deadlineInMillis = Number(proposal.deadline.toString()) * 1000;
+                const hasClosed = Date.now() >= deadlineInMillis;
+                return hasClosed;
             }
 
             proposals.push({
@@ -104,7 +109,7 @@ app.get('/proposals', async (req, res) => {
                 minimumVotes: proposal.minimumVotes.toString(),
                 votesForA: proposal.votesForA.toString(),
                 votesForB: proposal.votesForB.toString(),
-                closed: proposal.isClosed,
+                closed: isClosed(),
                 finished: proposal.finished,
                 winningOption: winningOption,
                 quorum: quorum,

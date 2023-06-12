@@ -2,10 +2,11 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-const title = "second Proposal";
-const description = "This is the second proposal";
-const deadline = Math.floor(Date.now() / 1000) + 3600 * 7
-const minimumVotes = 10;
+const title = "tenth Proposal";
+const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+const deadline = Math.floor(Date.now() / 1000) + 60 * 3600
+
+const minimumVotes = 1;
 
 
 async function main() {
