@@ -1,0 +1,61 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  
+}
+
+.bg-dark {
+  background-color: black;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.dao-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.dao-logo {
+  width: 200px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.dao-logo-container-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.dao-logo-small {
+  width: 50px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h2 {
+  color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+  }
