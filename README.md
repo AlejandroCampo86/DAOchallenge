@@ -6,7 +6,7 @@ INSTALATION ///////////////////////////////////////////////////////////
 
 - install dependencies in the front-end
 	DAO\dao-frontend> npm install
-	Contract addresses are included in the .env(Remember to change if you decide to deploy a different contract)
+	(Contract addresses are included in the .env. Remember to change if you decide to deploy a different contract)
 
 - install backend dependencies 
 	DAO\dao-backend> npm install (will install express, axios and dotenv)
