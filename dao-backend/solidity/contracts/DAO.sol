@@ -33,6 +33,11 @@ contract DAO {
     event ProposalClosed(uint256 proposalId);
     event ProposalFinished(uint256 proposalId, string winningOption);
 
+    modifier onlyMember() {
+        require(members[msg.sender], "Not a member");
+        _;
+    }
+
     function joinDAO() public {
         require(!members[msg.sender], "Already a member");
 
@@ -73,7 +78,11 @@ contract DAO {
         emit ProposalCreated(proposalId, title);
     }
 
-    function vote(uint256 proposalId, uint256 voteOption) public {
+    function vote(
+        uint256 proposalId,
+        uint256 voteOption,
+        uint256 tokensToCharge
+    ) public onlyMember {
         Proposal storage proposal = proposals[proposalId];
 
         if (block.timestamp >= proposal.deadline) {
@@ -86,6 +95,10 @@ contract DAO {
         require(!proposal.isClosed, "Proposal is closed");
         require(!proposal.finished, "Proposal is finished");
         require(!hasVoted[proposalId][msg.sender], "Already voted");
+        require(
+            memberBalances[msg.sender] >= tokensToCharge,
+            "Insufficient tokens"
+        );
 
         if (voteOption == 0) {
             proposal.votesForA++;
@@ -96,6 +109,7 @@ contract DAO {
         }
 
         hasVoted[proposalId][msg.sender] = true;
+        memberBalances[msg.sender] -= tokensToCharge;
 
         emit VoteSubmitted(proposalId, msg.sender, voteOption);
     }

@@ -18,7 +18,7 @@ app.get('/proposals', async (req, res) => {
     try {
         // Connect to the deployed DAO contract
         const DAO = await hre.ethers.getContractFactory("DAO");
-        const daoContract = await DAO.attach('0x7814ea4D6AD4Ea503e17D27E6895236e4b224090');
+        const daoContract = await DAO.attach('0xBf8926176B5Da17FF470048D65176ca7A16330e3');
 
         // Get the total number of proposals
         const proposalCount = await daoContract.proposalsCount();

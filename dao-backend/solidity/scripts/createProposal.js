@@ -2,7 +2,7 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-const title = "Fourth Proposal";
+const title = "First Proposal";
 const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 5 // five minutes from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 // one hour from now
@@ -20,7 +20,7 @@ async function main() {
     console.log("Deployer address:", deployer.address);
 
     // Connect to the deployed contract
-    const daoContract = await DAO.attach('0x7814ea4D6AD4Ea503e17D27E6895236e4b224090');
+    const daoContract = await DAO.attach('0xBf8926176B5Da17FF470048D65176ca7A16330e3');
 
     // Create the proposal
     await daoContract.createProposal(
