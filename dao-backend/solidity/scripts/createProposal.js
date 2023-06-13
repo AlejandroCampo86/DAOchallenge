@@ -4,10 +4,10 @@ const path = require("path");
 
 const title = "Fourth Proposal";
 const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-// const deadline = Math.floor(Date.now() / 1000) + 60 * 5 // five minutes from now
+const deadline = Math.floor(Date.now() / 1000) + 60 * 5 // five minutes from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 // one hour from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 // one day from now
-const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30// one month from now
+// const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30// one month from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 365// one year from now
 
 const minimumVotes = 1;
