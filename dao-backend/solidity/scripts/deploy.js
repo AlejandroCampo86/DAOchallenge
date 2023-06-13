@@ -6,7 +6,7 @@ async function main() {
     // Compile the contracts
     await hre.run("compile");
 
-    // Deploy the DAO contract without passing the token address
+    // Deploy the DAO contract 
     const DAO = await hre.ethers.getContractFactory("DAO");
     const dao = await DAO.deploy();
     await dao.deployed();

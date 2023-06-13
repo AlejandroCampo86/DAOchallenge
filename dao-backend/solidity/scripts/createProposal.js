@@ -2,27 +2,25 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-const title = "Fifth Proposal";
+const title = "Fourth Proposal";
 const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-//const deadline = Math.floor(Date.now() / 1000) + 60 * 5 // five minutes from now
+// const deadline = Math.floor(Date.now() / 1000) + 60 * 5 // five minutes from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 // one hour from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 // one day from now
-// const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30// one month from now
-const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 365// one year from now
+const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30// one month from now
+// const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 365// one year from now
 
 const minimumVotes = 1;
-
 
 async function main() {
     const [deployer] = await hre.ethers.getSigners();
 
     // Deploy the DAO contract
     const DAO = await hre.ethers.getContractFactory("DAO");
-
     console.log("Deployer address:", deployer.address);
 
     // Connect to the deployed contract
-    const daoContract = await DAO.attach('0xd6b326A435ccCAb645bC88dB0e43D6671Eb7879e');
+    const daoContract = await DAO.attach('0x7814ea4D6AD4Ea503e17D27E6895236e4b224090');
 
     // Create the proposal
     await daoContract.createProposal(

@@ -23,6 +23,7 @@ contract DAO {
         daoToken = DAOtoken(tokenAddress);
     }
 
+    mapping(address => bool) public members;
     Proposal[] public proposals;
     mapping(address => uint256) public memberBalances;
     mapping(uint256 => mapping(address => bool)) public hasVoted;
@@ -32,21 +33,21 @@ contract DAO {
     event ProposalClosed(uint256 proposalId);
     event ProposalFinished(uint256 proposalId, string winningOption);
 
-    modifier onlyMember() {
-        require(memberBalances[msg.sender] > 0, "Only members can vote");
-        _;
-    }
-
     function joinDAO() public {
-        require(memberBalances[msg.sender] == 0, "Already a member");
+        require(!members[msg.sender], "Already a member");
 
-        uint256 initialTokens = 100; // tokens to be sent to joiners of DAO
+        uint256 initialTokens = 100;
         require(
             daoToken.transferFromDAO(msg.sender, initialTokens),
             "Token transfer failed"
         );
 
         memberBalances[msg.sender] = initialTokens;
+        members[msg.sender] = true;
+    }
+
+    function isMember(address memberAddress) public view returns (bool) {
+        return members[memberAddress];
     }
 
     function createProposal(
@@ -72,7 +73,7 @@ contract DAO {
         emit ProposalCreated(proposalId, title);
     }
 
-    function vote(uint256 proposalId, uint256 voteOption) public onlyMember {
+    function vote(uint256 proposalId, uint256 voteOption) public {
         Proposal storage proposal = proposals[proposalId];
 
         if (block.timestamp >= proposal.deadline) {

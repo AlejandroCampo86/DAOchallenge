@@ -13,7 +13,6 @@
     "hardhat": "^2.14.1"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.4.0",
     "install": "^0.13.0",
     "npm": "^9.7.1"
   }

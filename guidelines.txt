@@ -1,0 +1,62 @@
+
+
+
+
+DAO contract deployed to: 0x5D1953d213F963C7024f6fd80C28F6BaE8aA3B97
+Deployer address: 0xeDf11CADE95C6D5b81c0C8965b1e656e9e6876d7
+Token contract address: 0x41b4E6587AB51673e1f750d6f7B460972C8dd103
+
+DAO contract deployed to: 0x7814ea4D6AD4Ea503e17D27E6895236e4b224090
+Deployer address: 0xeDf11CADE95C6D5b81c0C8965b1e656e9e6876d7
+Token contract address: 0x6cb6Da50F6FCD5Ba0333930E7f48a2049CDB9437
+
+//////////////////////////////////////////////////////////////////////////////////
+READ ME:
+- Enter your Private Keys in .env for interacting with the Hardhat Environment
+- Get some MATIC tokens for handling transactions at https://mumbaifaucet.com/
+- COMMANDS: 
+	Creates a New Proposal:
+	- npx hardhat run scripts/createProposal.js --network polygon_mumbai
+	Deploy DAO Contract and Token Contract:
+	- npx hardhat run scripts/deploy.js --network polygon_mumbai
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+- frontend application 
+	- Conexion a Metamask ***
+	- Join the DAO and receive tokens ***
+	- Formatear Deadline e impedir voto si la propuesta finaliza. ***
+	- implementar la alocacion de tokens al registrarse ***
+	- Ajustar estilos minimos ***
+	- Agregar spinners ***
+	- error handlers (vote ok) ***
+	- Lists all proposals and their status (pending, closed, finished, option A won, option B won, etc) ***
+	- Switch from chain ***	
+	- Desabilitar boton de JOIN DAO ***
+	- Handle minimum votes and update status if not met ***
+	- Switch from account should take to login. ***
+	- refactor code ***
+	- about page
+
+
+- Contract 
+	- Mint its native token ***
+	- create a function to distribute some DAO tokens to users upon registration ***
+	- Handle minimum votes and update status if not met ***
+	
+
+- Allows to vote option A or option B ***
+
+BUGS:
+	- proposal figura pending cuando ya termino ***
+	- Connect to Metamask not working ***
+	- You have already voted for this proposal. Choose a different one.
+	- deadline passed figura pending ***	
+	- Go Back to Proposal list doesnt work in proposal Detail.***
+	- Status: Closed when votes reached minimum. Should say: A won. ***
+	- JOIN DAO Fail with error 'Already a member'. Alertar a la UI. ***
+	- Vote Fails with error 'Only members can vote''. Alertar a la UI. **
+
+
+
