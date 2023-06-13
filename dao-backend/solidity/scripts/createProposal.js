@@ -7,7 +7,7 @@ const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, se
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 5 // five minutes from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 // one hour from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 // one day from now
-const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30// one month from now
+// const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30// one month from now
 // const deadline = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 365// one year from now
 
 const minimumVotes = 1;
